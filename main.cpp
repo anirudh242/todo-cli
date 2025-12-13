@@ -33,13 +33,15 @@ int main(int argc, char const **argv)
        todoList.list(); 
     });
    
-    // auto getByIDCmd = app.add_subcommand("get", "Get specific todo by ID");
-    // int getTodoID;
-    // getByIDCmd->add_option("ID", getTodoID, "ID of the todo to get")->required();
-    // getByIDCmd->callback([&]() {
-    //     
-    // });
-    
+    // TOGGLE TODO STATUS
+    auto toggleCmd = app.add_subcommand("toggle", "Toggle todo status");
+    int toggleTodoID;
+    toggleCmd->add_option("ID", toggleTodoID, "ID of todo to toggle")->required();
+    toggleCmd->callback([&]() {
+        todoList.toggleTodo(toggleTodoID);
+        // TODO: Show better output like 'Todo set to DONE' by implementing get by ID function
+    });
+
     app.require_subcommand(1);
     CLI11_PARSE(app, argc, argv);
 

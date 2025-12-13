@@ -8,6 +8,7 @@ class TodoList {
         void add(const std::string& title);
         void list() const;
         void remove(int id);
+        bool toggleTodo(int id);
 
     private:
         void load();

@@ -64,6 +64,17 @@ void TodoList::list() const {
     }
 
     for (const auto& todo : todos) {
-        std::cout << todo.getId() << "\t" << todo.getTitle() << "\t" << todo.getDone() << "\n";
+        std::cout << todo.getId() << "\t" << todo.getTitle() << "\t" << (todo.getDone() == 0 ? "Not done" : "Done") << "\n";
     }
+}
+
+bool TodoList::toggleTodo(int id) {
+    for (auto& todo : todos) {
+        if (todo.getId() == id) {
+            todo.toggleDone();
+            save();
+            return true;
+        }
+    } 
+    return false;
 }
