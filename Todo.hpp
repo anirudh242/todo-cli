@@ -14,7 +14,4 @@ class Todo {
         int id;
         std::string title;
         bool done;
-
 };
-
-std::vector<Todo> listTodos(const std::string& filename);

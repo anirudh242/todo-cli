@@ -4,6 +4,12 @@
 #include <algorithm>
 #include <iostream>
 #include <optional>
+#include <iomanip>
+
+const std::string RED = "\033[31m";
+const std::string GREEN = "\033[32m";
+const std::string RESET = "\033[0m";
+const std::string BOLD = "\033[1m";
 
 TodoList::TodoList(const std::string& filename) : filename(filename) {
     load();
@@ -64,20 +70,27 @@ void TodoList::list() const {
         return;
     }
 
+
+    std::cout << std::left 
+            << std::setw(5) << "ID"
+            << std::setw(10) << "STATUS" 
+            << "TITLE" 
+            << std::endl;
+
+    std::cout << std::string(30, '-') << std::endl;
+
     for (const auto& todo : todos) {
-        std::cout << todo.getId() << "\t" << todo.getTitle() << "\t" << (todo.getDone() == 0 ? "Not done" : "Done") << "\n";
+        std::string statusColor = todo.getDone() ? GREEN : RED;
+
+        std::cout << std::left
+        << std::setw(5) << todo.getId()
+        << statusColor << BOLD << std::setw(10) << (todo.getDone() ? "DONE" : "NOT DONE") << RESET
+        << todo.getTitle()
+        << std::endl;
     }
 }
 
 std::optional<std::string> TodoList::toggleTodo(int id) {
-    // for (auto& todo : todos) {
-    //     if (todo.getId() == id) {
-    //         todo.toggleDone();
-    //         save();
-    //         return true;
-    //     }
-    // } 
-
     auto it = std::find_if(todos.begin(), todos.end(), [id](const Todo& t) {
         return t.getId() == id;
     });
