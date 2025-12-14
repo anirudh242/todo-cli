@@ -1,3 +1,7 @@
 /home/anirudh/Desktop/Coding Projects/todo-cli/build/CMakeFiles/todo.dir
 /home/anirudh/Desktop/Coding Projects/todo-cli/build/CMakeFiles/edit_cache.dir
 /home/anirudh/Desktop/Coding Projects/todo-cli/build/CMakeFiles/rebuild_cache.dir
+/home/anirudh/Desktop/Coding Projects/todo-cli/build/CMakeFiles/list_install_components.dir
+/home/anirudh/Desktop/Coding Projects/todo-cli/build/CMakeFiles/install.dir
+/home/anirudh/Desktop/Coding Projects/todo-cli/build/CMakeFiles/install/local.dir
+/home/anirudh/Desktop/Coding Projects/todo-cli/build/CMakeFiles/install/strip.dir
