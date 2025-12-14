@@ -3,6 +3,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iostream>
+#include <optional>
 
 TodoList::TodoList(const std::string& filename) : filename(filename) {
     load();
@@ -68,13 +69,24 @@ void TodoList::list() const {
     }
 }
 
-bool TodoList::toggleTodo(int id) {
-    for (auto& todo : todos) {
-        if (todo.getId() == id) {
-            todo.toggleDone();
-            save();
-            return true;
-        }
-    } 
-    return false;
+std::optional<std::string> TodoList::toggleTodo(int id) {
+    // for (auto& todo : todos) {
+    //     if (todo.getId() == id) {
+    //         todo.toggleDone();
+    //         save();
+    //         return true;
+    //     }
+    // } 
+
+    auto it = std::find_if(todos.begin(), todos.end(), [id](const Todo& t) {
+        return t.getId() == id;
+    });
+    
+    if (it != todos.end()) {
+        it->toggleDone();
+        save();
+        return it->getDone() ? "DONE" : "NOT DONE";
+    }
+
+    return std::nullopt;
 }

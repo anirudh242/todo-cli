@@ -1,6 +1,7 @@
 #pragma once
 #include "Todo.hpp" 
 #include <vector>
+#include <optional>
 
 class TodoList {
     public:
@@ -8,7 +9,7 @@ class TodoList {
         void add(const std::string& title);
         void list() const;
         void remove(int id);
-        bool toggleTodo(int id);
+        std::optional<std::string> toggleTodo(int id);
 
     private:
         void load();

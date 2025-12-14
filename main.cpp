@@ -38,8 +38,12 @@ int main(int argc, char const **argv)
     int toggleTodoID;
     toggleCmd->add_option("ID", toggleTodoID, "ID of todo to toggle")->required();
     toggleCmd->callback([&]() {
-        todoList.toggleTodo(toggleTodoID);
-        // TODO: Show better output like 'Todo set to DONE' by implementing get by ID function
+        auto result = todoList.toggleTodo(toggleTodoID);
+        if (result) {
+            std::cout << "Todo " << toggleTodoID << " is now marked as " << *result << std::endl;
+        } else {
+            std::cout << "Could not find given todo ID" << std::endl;
+        }
     });
 
     app.require_subcommand(1);
