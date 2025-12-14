@@ -66,7 +66,7 @@ void TodoList::remove(int id) {
 
 void TodoList::list() const {
     if (todos.empty()) {
-        std::cout << "NO TODOS\n" << std::endl;
+        std::cout << BOLD << "NO TODOS\n" << std::endl;
         return;
     }
 
