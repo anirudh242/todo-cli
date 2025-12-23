@@ -3,16 +3,16 @@
 * tada -> japanese for 'simply'
 
 # FEATURES TO ADD
-[] Edit todos
-[] Clear all completed
-[] Search and filter
-[] progression bar
-[] Better UI
-[] Different lists
-[] priority
+[ ] Edit todos
+[ ] Clear all completed
+[ ] Search and filter
+[ ] progression bar
+[ ] Better UI
+[ ] Different lists
+[ ] priority
   ```bash
       todo new 'Fix bug' --priority high
   ```
-[] deadlines
-[] tags (eg. @work, @home, etc.)
-[] markdown export
+[ ] deadlines
+[ ] tags (eg. @work, @home, etc.)
+[ ] markdown export
