@@ -9,6 +9,7 @@ class TodoList {
         void add(const std::string& title);
         void list() const;
         void remove(int id);
+        bool edit(int id, const std::string& newTitle);
         std::optional<std::string> toggleTodo(int id);
 
     private:

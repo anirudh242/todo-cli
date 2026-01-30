@@ -15,6 +15,10 @@ std::string Todo::getTitle() const {
     return this->title;
 }
 
+void Todo::setTitle(const std::string& newTitle) {
+    this->title = newTitle;
+}
+
 bool Todo::getDone() const {
     return this->done;
 }

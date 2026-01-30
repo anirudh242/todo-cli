@@ -46,6 +46,20 @@ int main(int argc, char const **argv)
         }
     });
 
+    // EDIT TODO
+    auto editCmd = app.add_subcommand("edit", "Edit todo status");
+    int editTodoID;
+    std::string editTodoTitle;
+    editCmd->add_option("ID", editTodoID, "ID of todo to edit")->required();
+    editCmd->add_option("Title", editTodoTitle, "New title of todo to edit")->required();
+    editCmd->callback([&]() {
+        if (todoList.edit(editTodoID, editTodoTitle)) {
+            std::cout << "Updated todo " << editTodoID << " to: " << editTodoTitle << std::endl;
+        } else {
+            std::cout << "Could not find todo with ID: " << editTodoID << std::endl;
+        }
+    });
+
     app.require_subcommand(1);
     CLI11_PARSE(app, argc, argv);
 

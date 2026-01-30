@@ -103,3 +103,15 @@ std::optional<std::string> TodoList::toggleTodo(int id) {
 
     return std::nullopt;
 }
+
+bool TodoList::edit(int id, const std::string& newTitle) {
+    auto it = std::find_if(todos.begin(), todos.end(), [id](const Todo& t) {
+        return t.getId() == id;
+    });
+    if (it != todos.end()) {
+        it->setTitle(newTitle);
+        save();
+        return true;
+    }
+    return false;
+}
