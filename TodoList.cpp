@@ -115,3 +115,22 @@ bool TodoList::edit(int id, const std::string& newTitle) {
     }
     return false;
 }
+
+void TodoList::clearAll() {
+    todos.clear();
+    save();
+}
+
+void TodoList::clearComplete() {
+    auto it = std::remove_if(
+        todos.begin(),
+        todos.end(),
+        [](const Todo& todo) {
+            return todo.getDone();
+        }
+    );
+    if (it != todos.end()) {
+        todos.erase(it, todos.end());
+    }
+    save();
+}

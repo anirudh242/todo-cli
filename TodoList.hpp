@@ -11,6 +11,8 @@ class TodoList {
         void remove(int id);
         bool edit(int id, const std::string& newTitle);
         std::optional<std::string> toggleTodo(int id);
+        void clearAll();
+        void clearComplete();
 
     private:
         void load();

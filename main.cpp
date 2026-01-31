@@ -60,6 +60,20 @@ int main(int argc, char const **argv)
         }
     });
 
+    // CLEAR ALL TODOS
+    auto clearCmd = app.add_subcommand("clear", "Clear all completed todos");
+    bool clearAll = false;
+    clearCmd->add_flag("-a, --all", clearAll, "Flag to set whether to all todos including incomplete");
+    clearCmd->callback([&]() {
+        if (clearAll) {
+            todoList.clearAll();
+            std::cout << "Cleared all todos" << std::endl;
+        } else {
+            todoList.clearComplete();
+            std::cout << "Cleared all completed todos" << std::endl;
+        }
+    });
+
     app.require_subcommand(1);
     CLI11_PARSE(app, argc, argv);
 
