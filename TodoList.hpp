@@ -13,6 +13,7 @@ class TodoList {
         std::optional<std::string> toggleTodo(int id);
         void clearAll();
         void clearComplete();
+        bool setPriority(int id, Priority priority);
 
     private:
         void load();

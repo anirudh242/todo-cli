@@ -18,6 +18,7 @@ class Todo {
         bool getDone() const;
         void toggleDone();
         Priority getPriority() const;
+        void setPriority(Priority newPriority);
 
     private:
         int id;

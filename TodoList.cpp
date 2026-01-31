@@ -174,3 +174,15 @@ void TodoList::clearComplete() {
     }
     save();
 }
+
+bool TodoList::setPriority(int id, Priority priority) {
+    auto it = std::find_if(todos.begin(), todos.end(), [id](const Todo& t) {
+        return t.getId() == id;
+    });
+    if (it != todos.end()) {
+        it->setPriority(priority);
+        save();
+        return true;
+    }
+    return false;
+}

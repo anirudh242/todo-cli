@@ -31,3 +31,7 @@ void Todo::toggleDone() {
 Priority Todo::getPriority() const {
     return this->priority;
 }
+
+void Todo::setPriority(Priority newPriority) {
+    this->priority = newPriority;
+}

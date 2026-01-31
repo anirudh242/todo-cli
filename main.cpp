@@ -78,6 +78,25 @@ int main(int argc, char const **argv)
         }
     });
 
+    // CHANGE PRIORITY
+    auto priorityCmd = app.add_subcommand("priority", "Change priority of a todo");
+    int pID;
+    int pVal;
+    priorityCmd->add_option("ID", pID, "ID of the todo")->required();
+    priorityCmd->add_option("Level", pVal, "New Priority (1=Low, 2=Med, 3=High)")->required();
+    
+    priorityCmd->callback([&]() {
+        Priority p = Priority::LOW;
+        if (pVal == 3) p = Priority::HIGH;
+        else if (pVal == 2) p = Priority::MEDIUM;
+
+        if (todoList.setPriority(pID, p)) {
+            std::cout << "Updated priority for todo " << pID << " to " << pVal << std::endl;
+        } else {
+             std::cout << "Could not find todo with ID " << pID << std::endl;
+        }
+    });
+
     app.require_subcommand(1);
     CLI11_PARSE(app, argc, argv);
 
