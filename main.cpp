@@ -11,13 +11,17 @@ int main(int argc, char const **argv)
     // NEW TODO
     auto newCmd = app.add_subcommand("new", "Create new todo item");
     std::string newTitle;
+    int priorityInt = 1; 
     newCmd->add_option("title", newTitle, "Title of the todo")->required();
+    newCmd->add_option("-p,--priority", priorityInt, "Priority (1=Low, 2=Med, 3=High)");
     newCmd->callback([&]() {
-        todoList.add(newTitle);
-        std::cout << "Created todo: " << newTitle << std::endl;
+        Priority p = Priority::LOW;
+        if (priorityInt == 3) p = Priority::HIGH;
+        else if (priorityInt == 2) p = Priority::MEDIUM;
+        todoList.add(newTitle, p);
+        std::cout << "Created todo: " << newTitle << " with priority " << priorityInt << std::endl;
     });
     
-
     // DELETE TODO
     auto deleteCmd = app.add_subcommand("delete", "Delete specific todo item");
     int deleteTodoID; 

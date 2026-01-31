@@ -6,7 +6,7 @@
 # FEATURES TO ADD
 
 - [x] Edit todos
-- [ ] Clear all completed
+- [x] Clear all completed
 - [ ] Search and filter
 - [ ] progression bar
 - [ ] Better UI
