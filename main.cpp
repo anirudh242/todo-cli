@@ -2,12 +2,19 @@
 #include "Todo.hpp" 
 #include "TodoList.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <string>
 
 int main(int argc, char const **argv)
 {
     CLI::App app;
-    TodoList todoList("todolist.txt");
-
+    const char* homeDir = std::getenv("HOME");
+    std::string filename = "todolist.txt";
+    if (homeDir) {
+        // We make it a hidden file with the dot (.) prefix so it doesn't clutter your home folder
+        filename = std::string(homeDir) + "/.todolist.txt";
+    }
+    TodoList todoList(filename);
     // NEW TODO
     auto newCmd = app.add_subcommand("new", "Create new todo item");
     std::string newTitle;
