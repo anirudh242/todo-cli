@@ -83,10 +83,19 @@ void TodoList::remove(int id) {
     save();
 }
 
-void TodoList::list() const {
+void TodoList::list(bool sortByPriority) const {
     if (todos.empty()) {
         std::cout << BOLD << "NO TODOS\n" << std::endl;
         return;
+    }
+
+    // sort by priority if arg is true
+    std::vector<Todo> displayList = todos;
+    if (sortByPriority) {
+        std::stable_sort(displayList.begin(), displayList.end(), [](const Todo& a, const Todo& b) {
+            // sort by descending
+            return static_cast<int>(a.getPriority()) > static_cast<int>(b.getPriority());
+        });
     }
 
     std::cout << std::left 
@@ -98,7 +107,7 @@ void TodoList::list() const {
 
     std::cout << std::string(45, '-') << std::endl;
 
-    for (const auto& todo : todos) {
+    for (const auto& todo : displayList) {
         std::string statusColor = todo.getDone() ? GREEN : RED;
         
         // Determine Priority String and Color

@@ -40,8 +40,10 @@ int main(int argc, char const **argv)
 
     // LIST ALL TODOS
     auto listCmd = app.add_subcommand("list", "List all todos");
+    bool sortPriority = false;
+    listCmd->add_flag("-p,--priority", sortPriority, "Sort by priority (High to Low)");
     listCmd->callback([&]() {
-       todoList.list(); 
+       todoList.list(sortPriority); 
     });
    
     // TOGGLE TODO STATUS

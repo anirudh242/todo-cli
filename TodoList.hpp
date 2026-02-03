@@ -7,7 +7,7 @@ class TodoList {
     public:
         explicit TodoList(const std::string& filename);
         void add(const std::string& title, Priority priority = Priority::LOW);
-        void list() const;
+        void list(bool sortByPriority = false) const;
         void remove(int id);
         bool edit(int id, const std::string& newTitle);
         std::optional<std::string> toggleTodo(int id);
